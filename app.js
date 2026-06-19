@@ -42,7 +42,10 @@ function flipCoin() {
     result.textContent = side.title;
     hint.textContent = side.hint;
     flipButton.disabled = false;
-    fireworks.classList.add("is-active");
+
+    requestAnimationFrame(() => {
+      fireworks.classList.add("is-active");
+    });
 
     tg?.HapticFeedback?.notificationOccurred?.("success");
   }, 1150);

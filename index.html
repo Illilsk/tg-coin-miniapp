@@ -27,27 +27,40 @@
         <div class="coin" id="coin" data-side="heads">
           <div class="coin-face coin-front">
             <svg viewBox="0 0 160 160" role="img" aria-label="Орел">
-              <circle cx="80" cy="80" r="58" class="inner-ring" />
+              <circle cx="80" cy="80" r="62" class="coin-rim" />
+              <circle cx="80" cy="80" r="49" class="inner-ring" />
               <path
-                class="eagle-body"
-                d="M80 35c9 13 23 22 43 27-13 5-22 14-28 27l21 17-25-2c-4 11-8 18-11 24-3-6-7-13-11-24l-25 2 21-17c-6-13-15-22-28-27 20-5 34-14 43-27Z"
+                class="engrave-shadow"
+                d="M80 34c7 7 13 15 18 24 12-8 25-11 39-8-8 7-17 14-29 21 9 7 15 17 18 30-11-3-22-7-33-13v30l14 10-20 2-7 14-7-14-20-2 14-10V88c-11 6-22 10-33 13 3-13 9-23 18-30-12-7-21-14-29-21 14-3 27 0 39 8 5-9 11-17 18-24Z"
               />
               <path
-                class="eagle-cut"
-                d="M80 54c-7 12-17 20-31 24 13 4 23 10 31 20 8-10 18-16 31-20-14-4-24-12-31-24Z"
+                class="engrave-main"
+                d="M80 30c7 7 13 15 18 24 12-8 25-11 39-8-8 7-17 14-29 21 9 7 15 17 18 30-11-3-22-7-33-13v30l14 10-20 2-7 14-7-14-20-2 14-10V84c-11 6-22 10-33 13 3-13 9-23 18-30-12-7-21-14-29-21 14-3 27 0 39 8 5-9 11-17 18-24Z"
               />
-              <path class="eagle-body" d="M70 122h20l-10 14-10-14Z" />
+              <path class="engrave-cut" d="M66 45c-4 3-8 7-11 12 6 4 13 8 20 12-4-8-7-16-9-24Z" />
+              <path class="engrave-cut" d="M94 45c4 3 8 7 11 12-6 4-13 8-20 12 4-8 7-16 9-24Z" />
+              <circle cx="64" cy="62" r="4" class="engrave-cut" />
+              <circle cx="96" cy="62" r="4" class="engrave-cut" />
+              <path class="engrave-cut" d="M73 78h14l-7 9-7-9Z" />
             </svg>
           </div>
           <div class="coin-face coin-back">
             <svg viewBox="0 0 160 160" role="img" aria-label="Решка">
-              <circle cx="80" cy="80" r="58" class="inner-ring" />
-              <circle cx="80" cy="80" r="38" class="tail-mark" />
+              <circle cx="80" cy="80" r="62" class="coin-rim" />
+              <circle cx="80" cy="80" r="49" class="inner-ring" />
               <path
-                class="tail-line"
-                d="M58 75h44M58 91h44M69 57h22c13 0 22 8 22 20 0 13-9 21-23 21H73v25"
+                class="engrave-shadow"
+                d="M66 38h24v72h-17V61l-14 9-8-14 15-18Z"
               />
-              <path class="tail-line" d="M70 57v66" />
+              <path
+                class="engrave-main"
+                d="M64 34h24v72h-17V57l-14 9-8-14 15-18Z"
+              />
+              <path class="engrave-line" d="M38 116c14 12 70 12 84 0" />
+              <path class="engrave-line" d="M44 128c18 10 54 10 72 0" />
+              <path class="engrave-line" d="M108 48c10 7 17 18 17 32s-7 25-17 32" />
+              <path class="engrave-line" d="M52 48c-10 7-17 18-17 32s7 25 17 32" />
+              <text x="80" y="135" text-anchor="middle" class="coin-text">РЕШКА</text>
             </svg>
           </div>
         </div>

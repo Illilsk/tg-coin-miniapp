@@ -56,6 +56,7 @@ button {
   position: relative;
   transform-style: preserve-3d;
   filter: drop-shadow(0 28px 28px var(--shadow));
+  z-index: 2;
 }
 
 .coin.is-flipping {
@@ -92,32 +93,56 @@ button {
 }
 
 .coin-face svg {
-  width: 74%;
-  height: 74%;
-  filter: drop-shadow(0 3px 0 rgba(255, 244, 177, 0.45));
+  width: 82%;
+  height: 82%;
+  filter:
+    drop-shadow(0 3px 0 rgba(255, 244, 177, 0.42))
+    drop-shadow(0 -2px 0 rgba(84, 45, 5, 0.28));
+}
+
+.coin-rim {
+  fill: none;
+  stroke: rgba(116, 67, 7, 0.52);
+  stroke-width: 7;
+  stroke-dasharray: 2 7;
+  stroke-linecap: round;
 }
 
 .inner-ring {
   fill: rgba(255, 231, 140, 0.34);
   stroke: rgba(117, 65, 9, 0.64);
-  stroke-width: 7;
+  stroke-width: 5;
 }
 
-.eagle-body,
-.tail-mark {
-  fill: #754407;
+.engrave-main {
+  fill: #704008;
+  stroke: rgba(255, 231, 140, 0.38);
+  stroke-width: 2;
+  stroke-linejoin: round;
 }
 
-.eagle-cut {
-  fill: #f6c75e;
+.engrave-shadow {
+  fill: rgba(255, 238, 154, 0.6);
+  transform: translate(3px, 4px);
 }
 
-.tail-line {
+.engrave-cut {
+  fill: #f4c65d;
+}
+
+.engrave-line {
   fill: none;
-  stroke: #f7ce68;
-  stroke-width: 9;
+  stroke: #704008;
+  stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.coin-text {
+  fill: #704008;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0;
 }
 
 .panel {
@@ -199,31 +224,36 @@ h1 {
 
 .fireworks {
   position: absolute;
-  width: min(78vw, 360px);
+  width: min(92vw, 460px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
   pointer-events: none;
   opacity: 0;
   transform: scale(0.68);
+  z-index: 1;
 }
 
 .fireworks.is-active {
-  animation: fireworks-shell 820ms ease-out both;
+  animation: fireworks-shell 1200ms ease-out both;
 }
 
 .fireworks span {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--spark-color, #ffd978);
-  transform: rotate(var(--angle)) translateY(0);
-  box-shadow: 0 0 14px var(--spark-color, #ffd978);
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(var(--start, -36px));
+  box-shadow:
+    0 0 10px var(--spark-color, #ffd978),
+    0 0 24px var(--spark-color, #ffd978);
 }
 
 .fireworks.is-active span {
-  animation: spark 820ms ease-out both;
+  animation: spark 1200ms ease-out both;
 }
 
 .fireworks span:nth-child(1) {
@@ -234,56 +264,67 @@ h1 {
 .fireworks span:nth-child(2) {
   --angle: 30deg;
   --spark-color: #45c6a2;
+  --start: -58px;
 }
 
 .fireworks span:nth-child(3) {
   --angle: 60deg;
   --spark-color: #ff6b6b;
+  --start: -44px;
 }
 
 .fireworks span:nth-child(4) {
   --angle: 90deg;
   --spark-color: #f6f0df;
+  --start: -64px;
 }
 
 .fireworks span:nth-child(5) {
   --angle: 120deg;
   --spark-color: #ffd978;
+  --start: -48px;
 }
 
 .fireworks span:nth-child(6) {
   --angle: 150deg;
   --spark-color: #45c6a2;
+  --start: -62px;
 }
 
 .fireworks span:nth-child(7) {
   --angle: 180deg;
   --spark-color: #ff6b6b;
+  --start: -42px;
 }
 
 .fireworks span:nth-child(8) {
   --angle: 210deg;
   --spark-color: #f6f0df;
+  --start: -60px;
 }
 
 .fireworks span:nth-child(9) {
   --angle: 240deg;
   --spark-color: #ffd978;
+  --start: -50px;
 }
 
 .fireworks span:nth-child(10) {
   --angle: 270deg;
   --spark-color: #45c6a2;
+  --start: -66px;
 }
 
 .fireworks span:nth-child(11) {
   --angle: 300deg;
   --spark-color: #ff6b6b;
+  --start: -46px;
 }
 
 .fireworks span:nth-child(12) {
   --angle: 330deg;
   --spark-color: #f6f0df;
+  --start: -58px;
 }
 
 @keyframes fireworks-shell {
@@ -303,11 +344,15 @@ h1 {
 @keyframes spark {
   0% {
     opacity: 1;
-    transform: rotate(var(--angle)) translateY(0) scale(0.8);
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(var(--start, -36px)) scale(0.3);
+  }
+  26% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-132px) scale(1);
   }
   100% {
     opacity: 0;
-    transform: rotate(var(--angle)) translateY(-160px) scale(0.15);
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-190px) scale(0.08);
   }
 }
 
