@@ -1,5 +1,6 @@
 const tg = window.Telegram?.WebApp;
 const coin = document.querySelector("#coin");
+const fireworks = document.querySelector("#fireworks");
 const result = document.querySelector("#result");
 const hint = document.querySelector("#hint");
 const flipButton = document.querySelector("#flipButton");
@@ -30,6 +31,7 @@ function flipCoin() {
   result.textContent = "Крутим...";
   hint.textContent = "";
   coin.classList.remove("is-flipping");
+  fireworks.classList.remove("is-active");
 
   requestAnimationFrame(() => {
     coin.classList.add("is-flipping");
@@ -40,6 +42,7 @@ function flipCoin() {
     result.textContent = side.title;
     hint.textContent = side.hint;
     flipButton.disabled = false;
+    fireworks.classList.add("is-active");
 
     tg?.HapticFeedback?.notificationOccurred?.("success");
   }, 1150);
