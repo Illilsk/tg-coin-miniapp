@@ -46,6 +46,8 @@ button {
   display: grid;
   place-items: center;
   perspective: 900px;
+  position: relative;
+  overflow: hidden;
 }
 
 .coin {
@@ -73,7 +75,8 @@ button {
   backface-visibility: hidden;
   border: 10px solid #c98c24;
   background:
-    radial-gradient(circle at 35% 30%, #fff3b0 0 8%, transparent 9%),
+    radial-gradient(circle at 35% 30%, #fff6bd 0 8%, transparent 9%),
+    repeating-conic-gradient(from 8deg, rgba(255, 255, 255, 0.18) 0 8deg, transparent 8deg 18deg),
     radial-gradient(circle at 50% 50%, #f8ce68 0 43%, #d39426 44% 100%);
   box-shadow:
     inset 0 0 0 12px rgba(255, 255, 255, 0.15),
@@ -83,22 +86,38 @@ button {
 .coin-back {
   transform: rotateY(180deg);
   background:
-    radial-gradient(circle at 35% 30%, #fff3b0 0 8%, transparent 9%),
+    radial-gradient(circle at 35% 30%, #fff6bd 0 8%, transparent 9%),
+    repeating-conic-gradient(from 8deg, rgba(255, 255, 255, 0.16) 0 8deg, transparent 8deg 18deg),
     radial-gradient(circle at 50% 50%, #f7bf57 0 43%, #b8731f 44% 100%);
 }
 
-.coin-face span {
-  width: 44%;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  border: 4px solid rgba(121, 67, 10, 0.56);
-  color: #744307;
-  font-size: clamp(48px, 18vw, 98px);
-  font-weight: 900;
-  line-height: 1;
-  text-shadow: 0 2px 0 rgba(255, 244, 177, 0.65);
+.coin-face svg {
+  width: 74%;
+  height: 74%;
+  filter: drop-shadow(0 3px 0 rgba(255, 244, 177, 0.45));
+}
+
+.inner-ring {
+  fill: rgba(255, 231, 140, 0.34);
+  stroke: rgba(117, 65, 9, 0.64);
+  stroke-width: 7;
+}
+
+.eagle-body,
+.tail-mark {
+  fill: #754407;
+}
+
+.eagle-cut {
+  fill: #f6c75e;
+}
+
+.tail-line {
+  fill: none;
+  stroke: #f7ce68;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .panel {
@@ -128,6 +147,13 @@ h1 {
   font-size: clamp(34px, 10vw, 48px);
   line-height: 1.05;
   letter-spacing: 0;
+}
+
+.intro {
+  margin: 0;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.45;
 }
 
 .hint {
@@ -168,6 +194,120 @@ h1 {
   }
   100% {
     transform: translateY(0) rotateY(1440deg) rotateX(0) scale(1);
+  }
+}
+
+.fireworks {
+  position: absolute;
+  width: min(78vw, 360px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.68);
+}
+
+.fireworks.is-active {
+  animation: fireworks-shell 820ms ease-out both;
+}
+
+.fireworks span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--spark-color, #ffd978);
+  transform: rotate(var(--angle)) translateY(0);
+  box-shadow: 0 0 14px var(--spark-color, #ffd978);
+}
+
+.fireworks.is-active span {
+  animation: spark 820ms ease-out both;
+}
+
+.fireworks span:nth-child(1) {
+  --angle: 0deg;
+  --spark-color: #ffd978;
+}
+
+.fireworks span:nth-child(2) {
+  --angle: 30deg;
+  --spark-color: #45c6a2;
+}
+
+.fireworks span:nth-child(3) {
+  --angle: 60deg;
+  --spark-color: #ff6b6b;
+}
+
+.fireworks span:nth-child(4) {
+  --angle: 90deg;
+  --spark-color: #f6f0df;
+}
+
+.fireworks span:nth-child(5) {
+  --angle: 120deg;
+  --spark-color: #ffd978;
+}
+
+.fireworks span:nth-child(6) {
+  --angle: 150deg;
+  --spark-color: #45c6a2;
+}
+
+.fireworks span:nth-child(7) {
+  --angle: 180deg;
+  --spark-color: #ff6b6b;
+}
+
+.fireworks span:nth-child(8) {
+  --angle: 210deg;
+  --spark-color: #f6f0df;
+}
+
+.fireworks span:nth-child(9) {
+  --angle: 240deg;
+  --spark-color: #ffd978;
+}
+
+.fireworks span:nth-child(10) {
+  --angle: 270deg;
+  --spark-color: #45c6a2;
+}
+
+.fireworks span:nth-child(11) {
+  --angle: 300deg;
+  --spark-color: #ff6b6b;
+}
+
+.fireworks span:nth-child(12) {
+  --angle: 330deg;
+  --spark-color: #f6f0df;
+}
+
+@keyframes fireworks-shell {
+  0% {
+    opacity: 0;
+    transform: scale(0.58);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes spark {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateY(0) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateY(-160px) scale(0.15);
   }
 }
 
