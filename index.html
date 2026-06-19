@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Монетка</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <section class="coin-stage" aria-live="polite">
+        <div class="coin" id="coin" data-side="heads">
+          <div class="coin-face coin-front">
+            <span>О</span>
+          </div>
+          <div class="coin-face coin-back">
+            <span>Р</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">Подброс монетки</p>
+        <h1 id="result">Нажмите кнопку</h1>
+        <p class="hint" id="hint">Результат появится после подбрасывания.</p>
+        <button class="flip-button" id="flipButton" type="button">
+          Подбросить
+        </button>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

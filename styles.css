@@ -1,0 +1,185 @@
+:root {
+  color-scheme: dark;
+  --bg: #121416;
+  --surface: #1c2226;
+  --surface-2: #252d31;
+  --text: #f6f0df;
+  --muted: #a9b2b7;
+  --accent: #f2b84b;
+  --accent-2: #45c6a2;
+  --shadow: rgba(0, 0, 0, 0.42);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(69, 198, 162, 0.18), transparent 30rem),
+    linear-gradient(160deg, #15191b 0%, #111416 48%, #17120b 100%);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 24px;
+  padding: max(18px, env(safe-area-inset-top)) 18px max(18px, env(safe-area-inset-bottom));
+}
+
+.coin-stage {
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+  perspective: 900px;
+}
+
+.coin {
+  width: min(58vw, 260px);
+  aspect-ratio: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 28px 28px var(--shadow));
+}
+
+.coin.is-flipping {
+  animation: toss 1.15s cubic-bezier(0.2, 0.72, 0.25, 1) both;
+}
+
+.coin[data-side="tails"] {
+  transform: rotateY(180deg);
+}
+
+.coin-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  border: 10px solid #c98c24;
+  background:
+    radial-gradient(circle at 35% 30%, #fff3b0 0 8%, transparent 9%),
+    radial-gradient(circle at 50% 50%, #f8ce68 0 43%, #d39426 44% 100%);
+  box-shadow:
+    inset 0 0 0 12px rgba(255, 255, 255, 0.15),
+    inset 0 -18px 28px rgba(105, 56, 8, 0.34);
+}
+
+.coin-back {
+  transform: rotateY(180deg);
+  background:
+    radial-gradient(circle at 35% 30%, #fff3b0 0 8%, transparent 9%),
+    radial-gradient(circle at 50% 50%, #f7bf57 0 43%, #b8731f 44% 100%);
+}
+
+.coin-face span {
+  width: 44%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 4px solid rgba(121, 67, 10, 0.56);
+  color: #744307;
+  font-size: clamp(48px, 18vw, 98px);
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 2px 0 rgba(255, 244, 177, 0.65);
+}
+
+.panel {
+  width: min(100%, 440px);
+  justify-self: center;
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.26);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent-2);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  min-height: 43px;
+  font-size: clamp(34px, 10vw, 48px);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.hint {
+  min-height: 22px;
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.flip-button {
+  min-height: 56px;
+  border: 0;
+  border-radius: 8px;
+  color: #231707;
+  background: linear-gradient(180deg, #ffd978 0%, var(--accent) 100%);
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(242, 184, 75, 0.24);
+}
+
+.flip-button:active {
+  transform: translateY(1px);
+}
+
+.flip-button:disabled {
+  cursor: wait;
+  opacity: 0.78;
+}
+
+@keyframes toss {
+  0% {
+    transform: translateY(0) rotateY(0) rotateX(0) scale(1);
+  }
+  40% {
+    transform: translateY(-130px) rotateY(720deg) rotateX(38deg) scale(0.9);
+  }
+  100% {
+    transform: translateY(0) rotateY(1440deg) rotateX(0) scale(1);
+  }
+}
+
+@media (min-width: 720px) {
+  .app {
+    grid-template-columns: 1fr 420px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    padding: 40px;
+  }
+
+  .panel {
+    justify-self: end;
+  }
+}
