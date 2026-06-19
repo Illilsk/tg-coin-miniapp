@@ -10,12 +10,45 @@
   <body>
     <main class="app">
       <section class="coin-stage" aria-live="polite">
+        <div class="fireworks" id="fireworks" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <div class="coin" id="coin" data-side="heads">
           <div class="coin-face coin-front">
-            <span>О</span>
+            <svg viewBox="0 0 160 160" role="img" aria-label="Орел">
+              <circle cx="80" cy="80" r="58" class="inner-ring" />
+              <path
+                class="eagle-body"
+                d="M80 35c9 13 23 22 43 27-13 5-22 14-28 27l21 17-25-2c-4 11-8 18-11 24-3-6-7-13-11-24l-25 2 21-17c-6-13-15-22-28-27 20-5 34-14 43-27Z"
+              />
+              <path
+                class="eagle-cut"
+                d="M80 54c-7 12-17 20-31 24 13 4 23 10 31 20 8-10 18-16 31-20-14-4-24-12-31-24Z"
+              />
+              <path class="eagle-body" d="M70 122h20l-10 14-10-14Z" />
+            </svg>
           </div>
           <div class="coin-face coin-back">
-            <span>Р</span>
+            <svg viewBox="0 0 160 160" role="img" aria-label="Решка">
+              <circle cx="80" cy="80" r="58" class="inner-ring" />
+              <circle cx="80" cy="80" r="38" class="tail-mark" />
+              <path
+                class="tail-line"
+                d="M58 75h44M58 91h44M69 57h22c13 0 22 8 22 20 0 13-9 21-23 21H73v25"
+              />
+              <path class="tail-line" d="M70 57v66" />
+            </svg>
           </div>
         </div>
       </section>
@@ -23,6 +56,9 @@
       <section class="panel">
         <p class="eyebrow">Подброс монетки</p>
         <h1 id="result">Нажмите кнопку</h1>
+        <p class="intro">
+          Мини-игра для быстрого выбора: подбросьте монетку и получите случайный результат.
+        </p>
         <p class="hint" id="hint">Результат появится после подбрасывания.</p>
         <button class="flip-button" id="flipButton" type="button">
           Подбросить
